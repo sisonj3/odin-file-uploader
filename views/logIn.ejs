@@ -1,0 +1,33 @@
+<html>
+    <body>
+
+        <h1>Log In</h1>
+    
+        <% if (locals.errors) {%>
+            <ul>
+                <% errors.forEach((error)=> { %>
+                    <li>
+                        <%= error %>
+                    </li>
+                    <% }); %>
+            </ul>
+        <% } %>
+    
+        <form method="post" action="/log-in">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required="required">
+            </div>
+
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required="required">
+            </div>
+
+            <button type="submit">Log In</button>
+        </form>
+    
+        <button onclick="location.href='/sign-up';">Create Account</button>
+
+    </body>
+</html>
