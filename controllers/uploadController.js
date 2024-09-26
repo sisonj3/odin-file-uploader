@@ -1,3 +1,6 @@
+const multer = require('multer');
+const upload = multer({ dest: 'downloads/' })
+
 
 const renderUploadForm = (req, res) => {
     if (req.user) {
@@ -8,15 +11,16 @@ const renderUploadForm = (req, res) => {
     
 }
 
-const uploadFile = (req, res) => {
+const uploadFile = [upload.single('userFile'), (req, res) => {
     console.log("Uploading file...");
 
     // Save file to file system
+    console.log(req.file);
 
     console.log("Done");
 
     res.redirect("/");
-}
+}]
 
 module.exports = {
     renderUploadForm,
