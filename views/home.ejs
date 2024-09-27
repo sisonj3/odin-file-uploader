@@ -6,7 +6,22 @@
             <h1>Hello, World!</h1>
         <% } %>
 
+        <% if (locals.files) {%>
+
+            <ul>
+
+                <% files.forEach((file) => { %>
+                    <li>
+                        <button><%= file.name %></button>
+                    </li>
+                <% }); %>
+
+            </ul>
+        <% } %>
+            
         <button onclick="location.href='/upload-file';">Upload File</button>
+
+        <button onclick="location.href='/folder/create';">Add Folder</button>
 
         <button onclick="location.href='/log-in/log-out';">Log Out</button>
     </body>
