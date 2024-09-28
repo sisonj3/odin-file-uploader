@@ -1,0 +1,40 @@
+<html>
+    <body>
+        <h1><%= name %></h1>
+
+        <% if (locals.files) {%>
+        
+            <ul>
+        
+                <% files.forEach((file)=> { %>
+                    <li>
+                        <% if (!file.isFile) { %>
+                            <% if (path) { %>
+                                <button onclick="location.href='/folder/path/<%= path %>/<%= file.name %>';">
+                                    <%= file.name %>
+                                </button>
+                            <% } else { %>
+                                <button onclick="location.href='/folder/<%= file.name %>';">
+                                    <%= file.name %>
+                                </button>
+                            <% } %>
+                        <% } else { %>
+                            <button>
+                                <%= file.name %>
+                            </button>
+                        <% } %>
+                    </li>
+                <% }); %>
+        
+            </ul>
+
+        <% } %>
+
+        <button onclick="location.href='/upload-file';">Upload File</button>
+        
+        <button onclick="location.href='/folder/create/<%= path %>';">Add Folder</button>
+        
+        <button onclick="location.href='/log-in/log-out';">Log Out</button>
+
+    </body>
+</html>

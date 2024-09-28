@@ -3,11 +3,10 @@ const path = require('path');
 
 const defaultPath = 'downloads/';
 
-// Stores file info
-let fileList = [];
-
 const renderHome = async (req, res) => {
     if (req.user) {
+
+        const fileList = [];
 
         const files = await fs.readdir(defaultPath);
 

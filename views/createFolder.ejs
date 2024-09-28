@@ -1,6 +1,6 @@
 <html>
     <body>
-        <form action="/folder/create" method="post">
+        <form action="/folder/create/<%= path %>" method="post">
             <label for="folder">Folder Name:</label>
             <input type="text" name="folder" id="folder" required="required">
             <button type="submit">Add Folder</button>
