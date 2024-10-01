@@ -10,19 +10,19 @@ const renderHome = async (req, res) => {
 
         const files = await fs.readdir(defaultPath);
 
-        console.log(files);
+        //console.log(files);
 
         for(const file of files) {
             const filePath = path.join(defaultPath, file);
             const stats = await fs.stat(filePath);
 
-            console.log(stats);
+            //console.log(stats);
 
             fileList.push({ name: file, isFile: stats.isFile() });
         }
 
         console.log('Finished waiting');
-        console.log(fileList);
+        //console.log(fileList);
         res.render("home", { name: req.user.username, files: fileList });
 
     } else {
