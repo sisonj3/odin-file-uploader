@@ -13,4 +13,7 @@ folderRouter.post("/create/*", folderController.createFolder);
 // Render current folder contents
 folderRouter.get("/path/*", folderController.renderFolder);
 
+// Delete selected folder
+folderRouter.get("/delete/*", folderController.deleteFolder);
+
 module.exports = folderRouter;

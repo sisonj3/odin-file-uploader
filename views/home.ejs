@@ -17,8 +17,8 @@
                         <% } else { %>
                             <button><%= file.name %></button>
                         <% } %>
-                        
-                        <button>Delete</button>
+
+                        <button onclick="location.href='/folder/delete/<%= file.name %>';">Delete</button>
                         <button>Rename</button>
                     </li>
                 <% }); %>

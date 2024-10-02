@@ -75,8 +75,53 @@ const renderFolder = async (req, res) => {
     }
 }
 
+const deleteFolder = async (req, res) => {
+    const currentPath = defaultPath + req.params[0];
+    const stats = await fs.stat(currentPath);
+
+    console.log(`Deleting ${currentPath}...`);
+
+
+
+    // Delete file/folder
+    if (stats.isDirectory()) {
+
+        // Delete directory and all its contents
+        await fs.rm(currentPath, { recursive: true }, (err) => {
+            if (err) {
+                console.error(`Error deleting directory: ${err}`);
+            } else {
+                console.log("Directory deleted");
+            }
+        });
+
+    } else {
+        
+        // Delete file
+        await fs.unlink(currentPath, (err) => {
+            if (err) {
+                console.error(`Error deleting file: ${err}`);
+            } else {
+                console.log("File deleted");
+            }
+        });
+
+    }
+
+    if (req.params[0].split('/').length < 2) {
+        res.redirect("/");
+    } else {
+        const itemPath = req.params[0].split('/');
+
+        itemPath.pop();
+
+        res.redirect(`/folder/path/${itemPath.join('/')}`);
+    }
+}
+
 module.exports = {
     renderCreateFolder,
     createFolder,
     renderFolder,
+    deleteFolder,
 }
