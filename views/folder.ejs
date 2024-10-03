@@ -26,10 +26,10 @@
 
                         <% if (path) { %>
                             <button onclick="location.href='/folder/delete/<%= path %>/<%= file.name %>';">Delete</button>
-                            <button>Rename</button>
+                            <button onclick="location.href='/folder/rename/<%= path %>/<%= file.name %>';">Rename</button>
                         <% } else { %>
                             <button onclick="location.href='/folder/delete/<%= file.name %>';">Delete</button>
-                            <button>Rename</button>
+                            <button onclick="location.href='/folder/rename/<%= file.name %>';">Rename</button>
                         <% } %>
                         
                     </li>

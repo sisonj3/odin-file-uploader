@@ -13,6 +13,15 @@ const renderCreateFolder = (req, res) => {
     }
 }
 
+// Render rename folder form
+const renderRenameFolder = (req, res) => {
+    if (req.user) {
+        res.render('renameFolder.ejs', { path: req.params[0] });
+    } else {
+        res.redirect("/");
+    }
+}
+
 // Add folder to downloads directory
 const createFolder = (req, res) => {
     console.log("Creating folder...");
@@ -75,6 +84,44 @@ const renderFolder = async (req, res) => {
     }
 }
 
+const renameFolder = async (req, res) => {
+    console.log("Renaming folder...");
+
+    const folders = req.params[0].split('/');
+
+    let oldPath = defaultPath + req.params[0];
+    let newPath;
+
+    if ((folders.length - 1) <= 0) {
+        newPath = defaultPath + req.body.folder;
+    } else {
+        folders.pop();
+
+        newPath = defaultPath + folders.join('/') + '/' + req.body.folder;
+    }
+
+    console.log(oldPath);
+    console.log(newPath);
+
+    await fs.rename(oldPath, newPath, (err) => {
+        if (err) {
+            console.error("Error renaming file/folder: " + err);
+        }
+    });
+
+    if (req.params[0].split('/').length < 2) {
+        res.redirect("/");
+    } else {
+        const itemPath = req.params[0].split('/');
+
+        itemPath.pop();
+
+        res.redirect(`/folder/path/${itemPath.join('/')}`);
+    }
+
+
+}
+
 const deleteFolder = async (req, res) => {
     const currentPath = defaultPath + req.params[0];
     const stats = await fs.stat(currentPath);
@@ -121,7 +168,9 @@ const deleteFolder = async (req, res) => {
 
 module.exports = {
     renderCreateFolder,
+    renderRenameFolder,
     createFolder,
     renderFolder,
+    renameFolder,
     deleteFolder,
 }

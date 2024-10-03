@@ -16,4 +16,10 @@ folderRouter.get("/path/*", folderController.renderFolder);
 // Delete selected folder
 folderRouter.get("/delete/*", folderController.deleteFolder);
 
+// Render form to rename folder
+folderRouter.get("/rename/*", folderController.renderRenameFolder);
+
+// Rename selected folder
+folderRouter.post("/rename/*", folderController.renameFolder);
+
 module.exports = folderRouter;
