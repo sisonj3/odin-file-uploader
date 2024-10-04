@@ -19,9 +19,15 @@
                                 </button>
                             <% } %>
                         <% } else { %>
-                            <button>
-                                <%= file.name %>
-                            </button>
+                            <% if (path) { %>
+                                <button onclick="location.href='/file/path/<%= path %>/<%= file.name %>';">
+                                    <%= file.name %>
+                                </button>
+                            <% } else { %>
+                                <button onclick="location.href='/file/<%= file.name %>';">
+                                    <%= file.name %>
+                                </button>
+                            <% } %>
                         <% } %>
 
                         <% if (path) { %>

@@ -15,7 +15,7 @@
                         <% if (!file.isFile) { %>
                             <button onclick="location.href='/folder/path/<%= file.name %>';"><%= file.name %></button>
                         <% } else { %>
-                            <button><%= file.name %></button>
+                            <button onclick="location.href='/file/path/<%= file.name %>';"><%= file.name %></button>
                         <% } %>
 
                         <button onclick="location.href='/folder/delete/<%= file.name %>';">Delete</button>
